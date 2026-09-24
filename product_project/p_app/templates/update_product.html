@@ -1,0 +1,50 @@
+{% extends 'master/base.html' %}
+
+{% block title %}
+  <h1>Add Product</h1>
+{% endblock %}
+
+{% block body %}
+  <h1>welcome product update</h1>
+  <div class="container">
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label"> prouduct name</label>
+        <input type="text" name="prouduct_name" value="{{product_data.prouduct_name}}"class="form-control" id="exampleInputEmail1" />
+      </div>
+       <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">description</label>
+        <input type="text" name="description" value="{{product_data.description}}" class="form-control" id="exampleInputEmail1" />
+      </div>
+ <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">product date</label>
+        <input type="date" name="product_date" value="{{product_data.product_date|date:'Y-m-d'}}" class="form-control" id="exampleInputEmail1" />
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label"> image</label>
+        <input type="file" name="image" class="form-control" id="exampleInputEmail1" />
+        {% if product_data.image %}
+              <img src="/{{product_data.image }}" width="50px" alt="" />
+            {% else %}
+              No preview
+            {% endif %}
+  
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label"> product_type</label>
+<select class="form-select" aria-label="Default select example">
+  <option selected>Open this select menu</option>
+  <option value="fruits">Fruits</option>
+  <option value="grocery">Grocery</option>
+  <option value="fashion">Fashion</option>
+</select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Add Product</button>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'master/base.html' %}
+
+{% block title %}
+  student list
+{% endblock %}
+
+{% block body %}
+  <h1>welcome product list home</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>description</th>
+        <th>product date</th>
+        <th>image</th>
+        <th>product type</th>
+         <th>created_at</th>
+          <th>updated_at</th>
+       
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in product_data %}
+        <tr>
+          <td>{{ data.prouduct_name }}</td>
+          <td>{{ data.description }}</td>
+          <td>{{ data.product_date }}</td>
+
+          <td>
+            {% if data.image %}
+              <img src="/{{ data.image }}" width="50px" alt="" />
+            {% else %}
+              No preview
+            {% endif %}
+          </td>
+
+          <td>{{ data.product_type }}</td>
+          <td>{{ data.created_at }}</td>
+     
+          <td>{{ data.updated_at }}</td>
+
+          <td>
+            <a href="{% url 'delete_product' data.id %}">Delete</a>
+            <a href="{% url 'update_product' data.id %}">Update</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
